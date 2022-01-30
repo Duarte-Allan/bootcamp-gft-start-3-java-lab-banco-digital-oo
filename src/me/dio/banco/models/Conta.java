@@ -1,18 +1,30 @@
+package me.dio.banco.models;
+
+import lombok.Getter;
+import me.dio.banco.interfaces.IConta;
+
 
 public abstract class Conta implements IConta {
 	
 	private static final int AGENCIA_PADRAO = 1;
 	private static int SEQUENCIAL = 1;
 
+	@Getter
 	protected int agencia;
+	@Getter
 	protected int numero;
+	@Getter
 	protected double saldo;
+	@Getter
 	protected Cliente cliente;
+	@Getter
+	private long senha;
 
-	public Conta(Cliente cliente) {
+	public Conta(Cliente cliente, long senha) {
 		this.agencia = Conta.AGENCIA_PADRAO;
 		this.numero = SEQUENCIAL++;
 		this.cliente = cliente;
+		this.senha = senha;
 	}
 
 	@Override
@@ -31,17 +43,6 @@ public abstract class Conta implements IConta {
 		contaDestino.depositar(valor);
 	}
 
-	public int getAgencia() {
-		return agencia;
-	}
-
-	public int getNumero() {
-		return numero;
-	}
-
-	public double getSaldo() {
-		return saldo;
-	}
 
 	protected void imprimirInfosComuns() {
 		System.out.println(String.format("Titular: %s", this.cliente.getNome()));

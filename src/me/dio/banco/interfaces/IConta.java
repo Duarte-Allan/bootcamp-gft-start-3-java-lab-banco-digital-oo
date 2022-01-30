@@ -1,3 +1,4 @@
+package me.dio.banco.interfaces;
 
 public interface IConta {
 	
